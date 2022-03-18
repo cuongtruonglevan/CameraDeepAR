@@ -147,10 +147,11 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
     final ByteData data = await rootBundle.load(path);
     Directory tempDir = await getTemporaryDirectory();
     File tempFile = File('${tempDir.path}/$name');
-    // final file = await tempFile.writeAsBytes(data.buffer.asUint8List(), flush: true);
-    await tempFile.writeAsBytes(data.buffer.asUint8List(), flush: true);
-    return tempFile;
-    // return file;
+    final file =
+        await tempFile.writeAsBytes(data.buffer.asUint8List(), flush: true);
+    return file;
+    // await tempFile.writeAsBytes(data.buffer.asUint8List(), flush: true);
+    // return tempFile;
   }
 
   @override

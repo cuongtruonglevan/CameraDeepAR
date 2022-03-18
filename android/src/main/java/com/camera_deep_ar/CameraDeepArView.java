@@ -60,8 +60,6 @@ public class CameraDeepArView implements PlatformView,
     private int defaultCameraDevice = Camera.CameraInfo.CAMERA_FACING_FRONT;
     private int cameraDevice = defaultCameraDevice;
 
-
-
     public int activeFilterType = 0;
 
     private final int RESULT_LOAD_IMG = 123;
@@ -69,7 +67,6 @@ public class CameraDeepArView implements PlatformView,
     private final int height = 1280;
 
     FrameLayout frameView;
-
 
     @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
     public void onStartListener(LifecycleOwner owner,Lifecycle.Event event){
@@ -87,8 +84,6 @@ public class CameraDeepArView implements PlatformView,
             if(null!=handleDeepAr)   handleDeepAr.onDestroy();
         }
     }
-
-
 
     public CameraDeepArView(ActivityPluginBinding activityBinding, FlutterPlugin.FlutterPluginBinding pluginBinding, Context viewContext, int id, Object args) {
         FlutterLifecycleAdapter.getActivityLifecycle(activityBinding).addObserver(this);
@@ -134,7 +129,6 @@ public class CameraDeepArView implements PlatformView,
         Object cameraMode = params.get("cameraMode");
          displayMode = (int) params.get("displayMode");
          startView();
-         //checkPermissions();
     }
 
     private FrameLayout createFrameViewInstance(Context context) {
