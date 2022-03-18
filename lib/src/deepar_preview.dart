@@ -18,7 +18,6 @@ class DeepArPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // if (controller.value.isInitialized)
     return ValueListenableBuilder(
         valueListenable: controller,
         builder: (context, value, child) {
@@ -37,7 +36,6 @@ class DeepArPreview extends StatelessWidget {
               creationParams: args,
               creationParamsCodec: StandardMessageCodec());
         });
-    return Container();
   }
 
   void _onPlatformViewCreated(int id) => controller.init(id);

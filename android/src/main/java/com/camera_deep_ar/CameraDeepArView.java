@@ -147,13 +147,10 @@ public class CameraDeepArView implements PlatformView,
 
     private void checkPermissions(){
         Log.d("Setup", "Check Permissions Function");
-        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED 
-                || ContextCompat.checkSelfPermission(activity, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED ||
-                ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    Log.d("Setup", "Permissions not granted");
+        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            Log.d("Setup", "Permissions not granted");
             AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-             builder.setTitle("Permissions Needed!");
+            builder.setTitle("Permissions Needed!");
             builder.setMessage("Permissions are required to use this plugin");
             builder.setCancelable(true);
             builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {

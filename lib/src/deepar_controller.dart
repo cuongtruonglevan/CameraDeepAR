@@ -2,20 +2,13 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:camera_deep_ar/camera_deep_ar.dart';
-import 'package:camera_deep_ar/src/events.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class CameraDeepArController extends ValueNotifier<DeepArConfig> {
   CameraDeepArController(DeepArConfig value) : super(value);
-
-  // static CameraDeepArController? _instance;
-  //
-  // /// Get the singleton of [CameraDeepArController].
-  // static CameraDeepArController? get instance => _instance;
 
   bool _isDisposed = false;
 
@@ -25,8 +18,6 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
 
   static const EventChannel _eventChannel =
       EventChannel('plugins.flutter.io/deep_ar_camera/events');
-
-  static Stream? _stream;
 
   static StreamSubscription? _subscription;
 
@@ -45,19 +36,10 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
   void init(int viewId) async {
     value = value.copyWith(isInitialized: true, viewId: viewId);
     _channel = MethodChannel('plugins.flutter.io/deep_ar_camera/$viewId');
-    print("init $viewId ${_channel.name}");
+    debugPrint("init $viewId ${_channel.name}");
 
-    // _channel!.setMethodCallHandler((MethodCall call) async {
-    //   print("receivedMessage ${call.method}");
-    //   _eventHandler?.process(call.method, call.arguments);
-    // });
-
-    ///
-    ///start event listening after view is ready!
-    ///
-    // _stream = _eventChannel.receiveBroadcastStream();
     _subscription = _eventChannel.receiveBroadcastStream().listen((event) {
-      print("receiveBroadcastStream $event");
+      debugPrint("receiveBroadcastStream $event");
       final eventMap = Map<dynamic, dynamic>.from(event);
       final methodName = eventMap['methodName'] as String;
       final data = eventMap['data'];
@@ -65,7 +47,7 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
     });
 
     String resp = await _channel.invokeMethod('isCameraReady');
-    print("Camera Status $resp");
+    debugPrint("Camera Status $resp");
   }
 
   Future isCameraReady() async {
@@ -185,10 +167,10 @@ class CameraDeepArController extends ValueNotifier<DeepArConfig> {
   static checkPermissions() async {
     return await [
       Permission.camera,
-      Permission.microphone,
-      Permission.storage,
-      Permission.manageExternalStorage,
-      Permission.mediaLibrary,
+      // Permission.microphone,
+      // Permission.storage,
+      // Permission.manageExternalStorage,
+      // Permission.mediaLibrary,
     ].request();
   }
 
