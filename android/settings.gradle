@@ -1,2 +1,2 @@
-//include ':deepar'
+include ':deepar0'
 rootProject.name = 'camera_deep_ar'
