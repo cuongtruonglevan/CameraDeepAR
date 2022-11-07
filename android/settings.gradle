@@ -1,2 +1,3 @@
 rootProject.name = 'camera_deep_ar'
 include ':deepar_module'
+project(':deepar_module').projectDir = file('../deepar_module')
