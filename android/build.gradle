@@ -44,5 +44,5 @@ dependencies {
     implementation 'com.karumi:dexter:6.2.1'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    api project(":deepar0")
+    api project(':deepar_module')
 }
